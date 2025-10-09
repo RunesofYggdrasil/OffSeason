@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctky5qkjs1ykj"]
+
+[ext_resource type="Script" uid="uid://cajsdcx4qmsep" path="res://scenes/templates/item_template.gd" id="1_nxmuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfkau"]
+
+[node name="ItemTemplate" type="Node2D"]
+script = ExtResource("1_nxmuo")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+
+[node name="ItemArea" type="Area2D" parent="."]
+
+[node name="ItemCollision" type="CollisionShape2D" parent="ItemArea"]
+shape = SubResource("RectangleShape2D_wfkau")
+
+[connection signal="mouse_entered" from="ItemArea" to="." method="_on_item_area_mouse_entered"]
+[connection signal="mouse_exited" from="ItemArea" to="." method="_on_item_area_mouse_exited"]

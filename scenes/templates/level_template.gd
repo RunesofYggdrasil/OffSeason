@@ -25,7 +25,8 @@ func navigate_to_next_item(direction: INPUT_DIRECTION) -> void:
 		next_item = get_next_tab_item(direction)
 	else:
 		next_item = get_next_item(direction)
-	set_highlighted_item(next_item)
+	if next_item != null:
+		set_highlighted_item(next_item, true)
 
 func is_tab_next(a: Node2D, b: Node2D) -> bool:
 	if a.position.y < b.position.y:
@@ -57,28 +58,28 @@ func get_items_in_direction(direction: INPUT_DIRECTION) -> Array[Dictionary]:
 			x_difference = item.position.x
 			y_difference = item.position.y
 		else:
-			x_difference = item.position.x - highlighted_item.position.x
+			x_difference = (item.position.x) - highlighted_item.position.x
 			y_difference = item.position.y - highlighted_item.position.y
 		var total_distance: float = sqrt(x_difference ** 2 + y_difference ** 2)
 		var item_data: Dictionary = {"node": item, "x": x_difference, "y": y_difference, "slope": y_difference / x_difference, "distance": total_distance}
 		var is_in_direction: bool
 		if direction == INPUT_DIRECTION.RIGHT:
-			if item_data.x >= 0.0 and item_data.slope <= 1 and item_data.slope >= -1:
+			if item_data.x >= 0.0 and (item_data.slope <= 1 and item_data.slope >= -1):
 				is_in_direction = true
 			else:
 				is_in_direction = false
 		elif direction == INPUT_DIRECTION.DOWN:
-			if item_data.y >= 0.0 and item_data.slope >= 1 and item_data.slope <= -1:
+			if item_data.y >= 0.0 and (item_data.slope >= 1 or item_data.slope <= -1):
 				is_in_direction = true
 			else:
 				is_in_direction = false
 		elif direction == INPUT_DIRECTION.LEFT:
-			if item_data.x <= 0.0 and item_data.slope <= 1 and item_data.slope >= -1:
+			if item_data.x <= 0.0 and (item_data.slope <= 1 and item_data.slope >= -1):
 				is_in_direction = true
 			else:
 				is_in_direction = false
 		elif direction == INPUT_DIRECTION.UP:
-			if item_data.y <= 0.0 and item_data.slope >= 1 and item_data.slope <= -1:
+			if item_data.y <= 0.0 and (item_data.slope >= 1 or item_data.slope <= -1):
 				is_in_direction = true
 			else:
 				is_in_direction = false
@@ -122,9 +123,9 @@ func get_next_tab_item(direction: INPUT_DIRECTION) -> Node2D:
 		next_item = item_children[next_item_index]
 	return next_item
 
-func set_highlighted_item(new_item: Node2D) -> void:
-	if highlighted_item != null:
-		# set highlight to off
-		pass # remove later
-	# set new_child highlight to on
-	highlighted_item = new_item
+func set_highlighted_item(new_item: Node2D, hover: bool) -> void:
+	if hover:
+		if highlighted_item != null:
+			highlighted_item.set_hover(false)
+		highlighted_item = new_item
+	new_item.set_hover(hover)
