@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://ntloj35ppv2l"]
+
+[ext_resource type="Texture2D" uid="uid://bidon6ysbcuqy" path="res://assets/art/ui/TestMainTextBackground.png" id="1_e63gb"]
+[ext_resource type="Texture2D" uid="uid://ba3a3tei4nctf" path="res://assets/art/ui/BoxBorder.png" id="1_rndv6"]
+[ext_resource type="Texture2D" uid="uid://jo1pdaqg6baf" path="res://assets/art/ui/TestSpeakerTextBackground.png" id="2_qu6sy"]
+
+[node name="DialogueBox" type="Node2D"]
+
+[node name="BoxCanvas" type="CanvasLayer" parent="."]
+
+[node name="BoxContainer" type="Control" parent="BoxCanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 268.0
+offset_right = 572.0
+offset_bottom = 350.0
+
+[node name="MainBackgroundContainer" type="BoxContainer" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 502.0
+offset_bottom = 80.0
+alignment = 1
+
+[node name="MainTextBackground" type="TextureRect" parent="BoxCanvas/BoxContainer/MainBackgroundContainer"]
+layout_mode = 2
+texture = ExtResource("1_e63gb")
+
+[node name="MainText" type="RichTextLabel" parent="BoxCanvas/BoxContainer/MainBackgroundContainer/MainTextBackground"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 484.0
+offset_bottom = 48.0
+
+[node name="SpeakerTextBackground" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 116.0
+offset_bottom = 16.0
+texture = ExtResource("2_qu6sy")
+
+[node name="SpeakerText" type="RichTextLabel" parent="BoxCanvas/BoxContainer/SpeakerTextBackground"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 12.0
+
+[node name="SpeakerImageBackground" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_left = 211.0
+offset_right = 211.0
+
+[node name="SpeakerImage" type="TextureRect" parent="BoxCanvas/BoxContainer/SpeakerImageBackground"]
+layout_mode = 0
+
+[node name="TopLeftBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 16.0
+offset_bottom = 30.0
+texture = ExtResource("1_rndv6")
+flip_h = true
+
+[node name="BottomLeftBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_top = 66.0
+offset_right = 16.0
+offset_bottom = 82.0
+texture = ExtResource("1_rndv6")
+flip_h = true
+flip_v = true
+
+[node name="TopRightBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 14.0
+offset_right = 504.0
+offset_bottom = 30.0
+texture = ExtResource("1_rndv6")
+
+[node name="BottomRightBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 66.0
+offset_right = 504.0
+offset_bottom = 82.0
+texture = ExtResource("1_rndv6")
+flip_v = true

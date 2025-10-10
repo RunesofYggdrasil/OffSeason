@@ -1,0 +1,7 @@
+~ correct_dialogue
+Test: Hello, I am the correct object!
+=> END
+
+~ incorrect_dialogue
+Test: Hi. I am evil.
+=> END
