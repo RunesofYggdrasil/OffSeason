@@ -1,92 +1,134 @@
-[gd_scene load_steps=4 format=3 uid="uid://ntloj35ppv2l"]
+[gd_scene load_steps=6 format=3 uid="uid://ntloj35ppv2l"]
 
 [ext_resource type="Texture2D" uid="uid://bidon6ysbcuqy" path="res://assets/art/ui/TestMainTextBackground.png" id="1_e63gb"]
 [ext_resource type="Texture2D" uid="uid://ba3a3tei4nctf" path="res://assets/art/ui/BoxBorder.png" id="1_rndv6"]
+[ext_resource type="Script" uid="uid://d3fsrh1bc8m4w" path="res://scenes/systems/dialogue_box.gd" id="1_w335v"]
 [ext_resource type="Texture2D" uid="uid://jo1pdaqg6baf" path="res://assets/art/ui/TestSpeakerTextBackground.png" id="2_qu6sy"]
+[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/systems/box_container.gd" id="4_pxoqr"]
 
 [node name="DialogueBox" type="Node2D"]
+script = ExtResource("1_w335v")
 
 [node name="BoxCanvas" type="CanvasLayer" parent="."]
 
-[node name="BoxContainer" type="Control" parent="BoxCanvas"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 68.0
-offset_top = 268.0
-offset_right = 572.0
-offset_bottom = 350.0
+[node name="BoxMarginContainer" type="MarginContainer" parent="BoxCanvas"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -114.0
+offset_right = 268.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="MainBackgroundContainer" type="BoxContainer" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 16.0
-offset_right = 502.0
-offset_bottom = 80.0
-alignment = 1
-
-[node name="MainTextBackground" type="TextureRect" parent="BoxCanvas/BoxContainer/MainBackgroundContainer"]
+[node name="BoxContainer" type="Container" parent="BoxCanvas/BoxMarginContainer"]
 layout_mode = 2
-texture = ExtResource("1_e63gb")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_pxoqr")
 
-[node name="MainText" type="RichTextLabel" parent="BoxCanvas/BoxContainer/MainBackgroundContainer/MainTextBackground"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 484.0
-offset_bottom = 48.0
+[node name="BackgroundMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
-[node name="SpeakerTextBackground" type="TextureRect" parent="BoxCanvas/BoxContainer"]
+[node name="HorizontalBackgroundContainer" type="HBoxContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpeakerImageBackground" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer"]
+layout_mode = 2
+
+[node name="SpeakerImage" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/SpeakerImageBackground"]
 layout_mode = 0
-offset_left = 16.0
-offset_right = 116.0
-offset_bottom = 16.0
+
+[node name="VerticalTextContainer" type="VBoxContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="SpeakerTextMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/VerticalTextContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="SpeakerTextBackground" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/VerticalTextContainer/SpeakerTextMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("2_qu6sy")
 
-[node name="SpeakerText" type="RichTextLabel" parent="BoxCanvas/BoxContainer/SpeakerTextBackground"]
+[node name="SpeakerText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/VerticalTextContainer/SpeakerTextMarginContainer/SpeakerTextBackground"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 96.0
 offset_bottom = 12.0
 
-[node name="SpeakerImageBackground" type="TextureRect" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_left = 211.0
-offset_right = 211.0
+[node name="MainTextBackground" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/VerticalTextContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_e63gb")
+expand_mode = 1
 
-[node name="SpeakerImage" type="TextureRect" parent="BoxCanvas/BoxContainer/SpeakerImageBackground"]
+[node name="MainText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BackgroundMarginContainer/HorizontalBackgroundContainer/VerticalTextContainer/MainTextBackground"]
 layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 484.0
+offset_bottom = 48.0
 
-[node name="TopLeftBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_top = 14.0
-offset_right = 16.0
-offset_bottom = 30.0
+[node name="BorderMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 14
+
+[node name="HorizontalBorderContainer" type="HBoxContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftVerticalBorderContainer" type="VBoxContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopLeftBorder" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/LeftVerticalBorderContainer"]
+layout_mode = 2
 texture = ExtResource("1_rndv6")
 flip_h = true
 
-[node name="BottomLeftBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_top = 66.0
-offset_right = 16.0
-offset_bottom = 82.0
+[node name="VerticalBorderGap" type="Control" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/LeftVerticalBorderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomLeftBorder" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/LeftVerticalBorderContainer"]
+layout_mode = 2
 texture = ExtResource("1_rndv6")
 flip_h = true
 flip_v = true
 
-[node name="TopRightBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 14.0
-offset_right = 504.0
-offset_bottom = 30.0
+[node name="HorizontalBorderGap" type="Control" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightVerticalBorderContainer" type="VBoxContainer" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopRightBorder" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/RightVerticalBorderContainer"]
+layout_mode = 2
 texture = ExtResource("1_rndv6")
 
-[node name="BottomRightBorder" type="TextureRect" parent="BoxCanvas/BoxContainer"]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 66.0
-offset_right = 504.0
-offset_bottom = 82.0
+[node name="VerticalBorderGap" type="Control" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/RightVerticalBorderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRightBorder" type="TextureRect" parent="BoxCanvas/BoxMarginContainer/BoxContainer/BorderMarginContainer/HorizontalBorderContainer/RightVerticalBorderContainer"]
+layout_mode = 2
 texture = ExtResource("1_rndv6")
 flip_v = true
