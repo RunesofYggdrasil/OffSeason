@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba3a3tei4nctf"
-path="res://.godot/imported/BoxBorder.png-465ba69f56330bff7041bf9958fdadb8.ctex"
+uid="uid://ii4t3xdjan2a"
+path="res://.godot/imported/TestResponseBoxBorder.png-9af183719841a982670b55893578a3fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/BoxBorder.png"
-dest_files=["res://.godot/imported/BoxBorder.png-465ba69f56330bff7041bf9958fdadb8.ctex"]
+source_file="res://assets/art/ui/TestResponseBoxBorder.png"
+dest_files=["res://.godot/imported/TestResponseBoxBorder.png-9af183719841a982670b55893578a3fb.ctex"]
 
 [params]
 

@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvne2kq6mpvie"]
+[gd_scene load_steps=5 format=3 uid="uid://cvne2kq6mpvie"]
 
 [ext_resource type="Script" uid="uid://cbhf64ycc0yur" path="res://scenes/templates/level_template.gd" id="1_f53rw"]
+[ext_resource type="PackedScene" uid="uid://ctky5qkjs1ykj" path="res://scenes/templates/item_template.tscn" id="2_8kft7"]
+[ext_resource type="Texture2D" uid="uid://csub6m3fu2bv7" path="res://assets/art/sprites/circle.png" id="3_j0h5q"]
+[ext_resource type="Texture2D" uid="uid://cc6pei1xbery4" path="res://assets/art/sprites/hover_circle.png" id="4_2txic"]
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("selectable_container")]
 script = ExtResource("1_f53rw")
+selectable_container = NodePath(".")
+
+[node name="ItemTemplate" parent="." instance=ExtResource("2_8kft7")]
+position = Vector2(400, 114)
+base_texture = ExtResource("3_j0h5q")
+hover_texture = ExtResource("4_2txic")
+
+[node name="ItemTemplate2" parent="." instance=ExtResource("2_8kft7")]
+position = Vector2(131, 38)
+base_texture = ExtResource("3_j0h5q")
+hover_texture = ExtResource("4_2txic")
+
+[node name="ItemTemplate3" parent="." instance=ExtResource("2_8kft7")]
+position = Vector2(208, 151)
+base_texture = ExtResource("3_j0h5q")
+hover_texture = ExtResource("4_2txic")
+
+[node name="ItemTemplate4" parent="." instance=ExtResource("2_8kft7")]
+position = Vector2(489, 242)
+base_texture = ExtResource("3_j0h5q")
+hover_texture = ExtResource("4_2txic")

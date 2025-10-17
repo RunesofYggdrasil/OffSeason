@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0bmtt7opw2bl"]
+
+[ext_resource type="Script" uid="uid://74l2rchhq1sl" path="res://scenes/templates/text_container.gd" id="1_ucv6e"]
+[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/systems/box_container.gd" id="1_vyim1"]
+[ext_resource type="Texture2D" uid="uid://ii4t3xdjan2a" path="res://assets/art/ui/TestResponseBoxBorder.png" id="2_vyim1"]
+[ext_resource type="Texture2D" uid="uid://dkrw1j7vhqp24" path="res://assets/art/ui/TestResponseTextBackground.png" id="3_d5vsd"]
+[ext_resource type="Texture2D" uid="uid://bidon6ysbcuqy" path="res://assets/art/ui/TestMainTextBackground.png" id="4_m5d8d"]
+
+[node name="TextContainer" type="BoxContainer" node_paths=PackedStringArray("sprite_node", "collision_node")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_ucv6e")
+textbox_border_texture = ExtResource("2_vyim1")
+sprite_node = NodePath("SizeContainer/BackgroundMarginContainer/TextBackground")
+collision_node = NodePath("SizeContainer/BoxSize")
+base_texture = ExtResource("3_d5vsd")
+hover_texture = ExtResource("4_m5d8d")
+
+[node name="SizeContainer" type="Container" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_vyim1")
+
+[node name="BackgroundMarginContainer" type="MarginContainer" parent="SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextBackground" type="TextureRect" parent="SizeContainer/BackgroundMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+
+[node name="TextMarginContainer" type="MarginContainer" parent="SizeContainer/BackgroundMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextBox" type="RichTextLabel" parent="SizeContainer/BackgroundMarginContainer/TextMarginContainer"]
+layout_mode = 2
+
+[node name="BorderMarginContainer" type="MarginContainer" parent="SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BorderContainer" type="GridContainer" parent="SizeContainer/BorderMarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="TopLeftBorder" type="TextureRect" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+flip_h = true
+
+[node name="UpperBorderGap" type="Control" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopRightBorder" type="TextureRect" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+
+[node name="BottomLeftBorder" type="TextureRect" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="LowerBorderGap" type="Control" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRightBorder" type="TextureRect" parent="SizeContainer/BorderMarginContainer/BorderContainer"]
+layout_mode = 2
+flip_v = true
+
+[node name="BoxSize" type="Control" parent="SizeContainer"]
+layout_mode = 2
