@@ -51,5 +51,7 @@ base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="DialogueBox" parent="." instance=ExtResource("6_mfms0")]
+box_x = null
+box_width = null
 
 [connection signal="trigger_dialogue" from="LevelContainer" to="DialogueBox" method="trigger_dialogue"]

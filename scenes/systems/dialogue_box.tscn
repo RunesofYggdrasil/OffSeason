@@ -1,19 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://ntloj35ppv2l"]
+[gd_scene load_steps=8 format=3 uid="uid://ntloj35ppv2l"]
 
 [ext_resource type="Texture2D" uid="uid://bidon6ysbcuqy" path="res://assets/art/ui/TestMainTextBackground.png" id="1_e63gb"]
 [ext_resource type="Texture2D" uid="uid://ba3a3tei4nctf" path="res://assets/art/ui/TestMainBoxBorder.png" id="1_rndv6"]
 [ext_resource type="Script" uid="uid://d3fsrh1bc8m4w" path="res://scenes/systems/dialogue_box.gd" id="1_w335v"]
 [ext_resource type="Texture2D" uid="uid://jo1pdaqg6baf" path="res://assets/art/ui/TestSpeakerTextBackground.png" id="2_qu6sy"]
 [ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/systems/box_container.gd" id="4_pxoqr"]
+[ext_resource type="Script" uid="uid://wmhcatrifo44" path="res://scenes/templates/text_box.gd" id="5_cx8lm"]
 [ext_resource type="PackedScene" uid="uid://d0bmtt7opw2bl" path="res://scenes/templates/text_container.tscn" id="6_15mx6"]
 
 [node name="DialogueBox" type="Node2D" node_paths=PackedStringArray("selectable_container")]
 script = ExtResource("1_w335v")
-box_y = 100.0
-box_height = 200.0
+box_x = 30.0
+box_width = 580.0
 selectable_container = NodePath("BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer")
 
 [node name="BoxCanvas" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="BoxMarginContainer" type="MarginContainer" parent="BoxCanvas"]
 anchors_preset = 7
@@ -70,6 +72,8 @@ theme_override_constants/margin_bottom = 4
 
 [node name="SpeakerText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer/SpeakerTextMarginContainer/SpeakerTextMargins"]
 layout_mode = 2
+script = ExtResource("5_cx8lm")
+font_size_ratio = 0.9
 
 [node name="MainTextMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer"]
 layout_mode = 2
@@ -89,6 +93,8 @@ theme_override_constants/margin_bottom = 16
 
 [node name="MainText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer/MainTextMarginContainer/MainTextMargins"]
 layout_mode = 2
+script = ExtResource("5_cx8lm")
+font_size_ratio = 0.2
 
 [node name="BorderMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer"]
 layout_mode = 2
@@ -149,14 +155,38 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="ResponseContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+[node name="TopLeftResponseBox" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+visible = false
 layout_mode = 2
 
-[node name="ResponseContainer2" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+[node name="TopRightResponseBox" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+visible = false
 layout_mode = 2
 
-[node name="ResponseContainer3" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+[node name="BottomLeftResponseBox" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+visible = false
 layout_mode = 2
 
-[node name="ResponseContainer4" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+[node name="BottomRightResponseBox" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer" instance=ExtResource("6_15mx6")]
+visible = false
 layout_mode = 2
+
+[node name="TopLeftGapSize" type="Control" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopRightGapSize" type="Control" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomLeftGapSize" type="Control" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRightGapSize" type="Control" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/GridResponseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
