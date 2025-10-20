@@ -11,9 +11,7 @@ var highlighted_item: Selectable = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-	get_item_children()
-	for child in selectable_children:
-		child.mouse_hover.connect(set_highlighted_item)
+	setup_selectables()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("INVERSE_TAB"):
@@ -31,6 +29,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			navigate_to_next_item(INPUT_DIRECTION.UP)
 
 # Start Region: Accessing Selections
+func setup_selectables() -> void:
+	get_item_children()
+	for child in selectable_children:
+		var has_connection: bool = false
+		for connection in get_incoming_connections():
+			if connection.signal == child.mouse_hover:
+				has_connection = true
+		if !has_connection:
+			child.mouse_hover.connect(set_highlighted_item)
+
 func get_highlighted_item() -> Selectable:
 	return highlighted_item
 

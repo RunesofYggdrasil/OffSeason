@@ -1,0 +1,31 @@
+~ interact_dialogue_0
+Test: Hello, I am the correct object!
+- Yay!
+	Test: Good, you should be excited.
+- No...
+	Test: Why do you hate me?
+- ???
+=> END
+
+~ interact_dialogue_1
+Test: Hello, I am the correct object!
+- Yay!
+	Test: Good, you should be excited.
+- No...
+	Test: Why do you hate me?
+- ???
+=> END
+
+~ interact_dialogue_2
+Test: Hello, I am the correct object!
+- Yay!
+	Test: Good, you should be excited.
+- No...
+	Test: Why do you hate me?
+- ???
+- Pick Up!
+=> END
+
+~ interact_dialogue_3
+Test: I don't know if I should pick that up... it seems important
+=> END

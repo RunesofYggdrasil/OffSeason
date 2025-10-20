@@ -1,55 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvne2kq6mpvie"]
+[gd_scene load_steps=7 format=3 uid="uid://cvne2kq6mpvie"]
 
 [ext_resource type="Script" uid="uid://bb8q6b0d5s6j3" path="res://scenes/templates/level_template.gd" id="1_f53rw"]
 [ext_resource type="PackedScene" uid="uid://ctky5qkjs1ykj" path="res://scenes/templates/item_template.tscn" id="2_8kft7"]
-[ext_resource type="Script" uid="uid://dkml51gmth6lk" path="res://scenes/templates/level_container.gd" id="2_q26ly"]
-[ext_resource type="Resource" uid="uid://2577so3wm0xc" path="res://assets/dialogue/object_dialogue.dialogue" id="3_2txic"]
+[ext_resource type="Resource" uid="uid://2577so3wm0xc" path="res://assets/dialogue/object_template.dialogue" id="3_2txic"]
 [ext_resource type="Texture2D" uid="uid://csub6m3fu2bv7" path="res://assets/art/sprites/circle.png" id="3_j0h5q"]
 [ext_resource type="Texture2D" uid="uid://cc6pei1xbery4" path="res://assets/art/sprites/hover_circle.png" id="4_2txic"]
 [ext_resource type="PackedScene" uid="uid://ntloj35ppv2l" path="res://scenes/systems/dialogue_box.tscn" id="6_mfms0"]
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("selectable_container")]
 script = ExtResource("1_f53rw")
+selectable_container = NodePath("LevelContainer")
 
-[node name="LevelContainer" type="Node2D" parent="." node_paths=PackedStringArray("selectable_container")]
-script = ExtResource("2_q26ly")
-selectable_container = NodePath(".")
+[node name="LevelContainer" type="Node2D" parent="."]
 
 [node name="ItemTemplate" parent="LevelContainer" instance=ExtResource("2_8kft7")]
 position = Vector2(400, 114)
 dialogue_file = ExtResource("3_2txic")
-dialogue_start = "incorrect_dialogue"
 base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="ItemTemplate2" parent="LevelContainer" instance=ExtResource("2_8kft7")]
 position = Vector2(150, 57)
 dialogue_file = ExtResource("3_2txic")
-dialogue_start = "incorrect_dialogue"
 base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="ItemTemplate3" parent="LevelContainer" instance=ExtResource("2_8kft7")]
 position = Vector2(268, 247)
 dialogue_file = ExtResource("3_2txic")
-dialogue_start = "correct_dialogue"
 base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="ItemTemplate4" parent="LevelContainer" instance=ExtResource("2_8kft7")]
 position = Vector2(562, 63)
 dialogue_file = ExtResource("3_2txic")
-dialogue_start = "incorrect_dialogue"
 base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="ItemTemplate5" parent="LevelContainer" instance=ExtResource("2_8kft7")]
 position = Vector2(535, 219)
 dialogue_file = ExtResource("3_2txic")
-dialogue_start = "incorrect_dialogue"
 base_texture = ExtResource("3_j0h5q")
 hover_texture = ExtResource("4_2txic")
 
 [node name="DialogueBox" parent="." instance=ExtResource("6_mfms0")]
 
-[connection signal="trigger_dialogue" from="LevelContainer" to="DialogueBox" method="trigger_dialogue"]
+[connection signal="trigger_dialogue" from="." to="DialogueBox" method="trigger_dialogue"]

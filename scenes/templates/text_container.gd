@@ -19,6 +19,11 @@ func _ready() -> void:
 	for border_sprite in border_sprites:
 		border_sprite.texture = textbox_border_texture
 
+func correct_size() -> void:
+	if !box_text.is_correct_size():
+		box_text.setup_size()
+
 func set_text(text: String) -> void:
-	box_text.setup_size()
+	if !box_text.is_correct_size():
+		box_text.setup_size()
 	box_text.text = text

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ba3a3tei4nctf" path="res://assets/art/ui/TestMainBoxBorder.png" id="1_rndv6"]
 [ext_resource type="Script" uid="uid://d3fsrh1bc8m4w" path="res://scenes/systems/dialogue_box.gd" id="1_w335v"]
 [ext_resource type="Texture2D" uid="uid://jo1pdaqg6baf" path="res://assets/art/ui/TestSpeakerTextBackground.png" id="2_qu6sy"]
-[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/systems/box_container.gd" id="4_pxoqr"]
+[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/box_container.gd" id="4_pxoqr"]
 [ext_resource type="Script" uid="uid://wmhcatrifo44" path="res://scenes/templates/text_box.gd" id="5_cx8lm"]
 [ext_resource type="PackedScene" uid="uid://d0bmtt7opw2bl" path="res://scenes/templates/text_container.tscn" id="6_15mx6"]
 
@@ -41,7 +41,6 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.5
 script = ExtResource("4_pxoqr")
 
 [node name="BackgroundMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer"]
@@ -73,7 +72,7 @@ theme_override_constants/margin_bottom = 4
 [node name="SpeakerText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer/SpeakerTextMarginContainer/SpeakerTextMargins"]
 layout_mode = 2
 script = ExtResource("5_cx8lm")
-font_size_ratio = 0.9
+font_size = 7
 
 [node name="MainTextMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer"]
 layout_mode = 2
@@ -94,7 +93,7 @@ theme_override_constants/margin_bottom = 16
 [node name="MainText" type="RichTextLabel" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer/BackgroundMarginContainer/VerticalTextContainer/MainTextMarginContainer/MainTextMargins"]
 layout_mode = 2
 script = ExtResource("5_cx8lm")
-font_size_ratio = 0.2
+font_size = 12
 
 [node name="BorderMarginContainer" type="MarginContainer" parent="BoxCanvas/BoxMarginContainer/VerticalBoxContainer/BoxContainer"]
 layout_mode = 2

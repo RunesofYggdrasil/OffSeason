@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d0bmtt7opw2bl"]
 
 [ext_resource type="Script" uid="uid://74l2rchhq1sl" path="res://scenes/templates/text_container.gd" id="1_ucv6e"]
-[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/systems/box_container.gd" id="1_vyim1"]
+[ext_resource type="Script" uid="uid://bbbg4ko63ac24" path="res://scenes/box_container.gd" id="1_vyim1"]
 [ext_resource type="Texture2D" uid="uid://ii4t3xdjan2a" path="res://assets/art/ui/TestResponseBoxBorder.png" id="2_vyim1"]
 [ext_resource type="Texture2D" uid="uid://dkrw1j7vhqp24" path="res://assets/art/ui/TestResponseTextBackground.png" id="3_d5vsd"]
 [ext_resource type="Texture2D" uid="uid://bidon6ysbcuqy" path="res://assets/art/ui/TestMainTextBackground.png" id="4_m5d8d"]
@@ -40,6 +40,7 @@ layout_mode = 2
 [node name="TextBox" type="RichTextLabel" parent="SizeContainer/BackgroundMarginContainer/TextMarginContainer"]
 layout_mode = 2
 script = ExtResource("6_m5d8d")
+font_size = 10
 
 [node name="BorderMarginContainer" type="MarginContainer" parent="SizeContainer"]
 layout_mode = 2

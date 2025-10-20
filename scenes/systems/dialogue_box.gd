@@ -4,6 +4,7 @@ extends Selector
 @export var box_y: float = 160.0
 @export var box_width: float = 536.0
 @export var box_height: float = 200.0
+@export var box_ratio: float = 2.0
 
 const MINIMUM_WIDTH: float = 32.0
 const MINIMUM_HEIGHT: float = 112.0
@@ -61,6 +62,7 @@ func setup_nodes() -> void:
 	grid_container = find_node("GridResponseContainer", named_children)
 	response_boxes = grid_container.get_children()
 	box_canvas.hide()
+	box_container.size_flags_stretch_ratio = box_ratio
 	resize(box_container)
 	reposition(box_container)
 
@@ -151,6 +153,7 @@ func setup_dialogue() -> void:
 		speaker_text.setup_size()
 		main_text.text = dialogue_line.text
 		speaker_text.text = dialogue_line.character
+		is_awaiting_response = false
 		for child in response_boxes:
 			if child is Selectable:
 				child.visible = false
@@ -162,7 +165,7 @@ func setup_dialogue() -> void:
 
 func progress_dialogue() -> void:
 	if dialogue_line != null:
-		var next_id: String
+		var next_id: String = ""
 		if is_awaiting_response:
 			var response_index: int = get_highlighted_item_index()
 			# If a dialogue response is currently selected, use that response index to progress. Otherwise, do nothing and wait for a response.
@@ -170,8 +173,9 @@ func progress_dialogue() -> void:
 				next_id = dialogue_line.responses[response_index].next_id
 		else:
 			next_id = dialogue_line.next_id
-		dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue_resource, next_id)
-		setup_dialogue()
+		if next_id.length() > 0:
+			dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue_resource, next_id)
+			setup_dialogue()
 	else:
 		end_dialogue()
 
@@ -193,16 +197,24 @@ func progress_typing(delta: float = 0.0) -> void:
 
 func setup_response_dialogue() -> void:
 	if dialogue_line != null:
+		# This function should only be called if it is expecting to reassign whether it is awaiting a response.
 		if dialogue_line.responses.size() > 0:
 			var dialogue_responses: Array[DialogueResponse] = dialogue_line.responses
-			is_awaiting_response = true
-			for i in dialogue_responses.size():
-				var dialogue_response: DialogueResponse = dialogue_responses[i]
-				var response_node: Node = response_boxes[i]
-				var gap_node: Node = response_boxes[i + 4]
-				response_node.set_text(dialogue_response.text)
-				response_node.visible = true
-				gap_node.visible = false
+			# Only run if is_awaiting_response has not been reassigned yet, otherwise this would run every fraction of a second.
+			if !is_awaiting_response:
+				for i in dialogue_responses.size():
+					var dialogue_response: DialogueResponse = dialogue_responses[i]
+					var response_node: Node = response_boxes[i]
+					var gap_node: Node = response_boxes[i + 4]
+					response_node.set_text(dialogue_response.text)
+					response_node.visible = true
+					gap_node.visible = false
+				setup_selectables()
+				is_awaiting_response = true
+			else:
+				for i in dialogue_responses.size():
+					var response_node: Node = response_boxes[i]
+					response_node.correct_size()
 		else:
 			is_awaiting_response = false
 	else:
@@ -229,5 +241,6 @@ func end_dialogue() -> void:
 # Start Region: Signals
 func trigger_dialogue(dialogue_source: DialogueResource, dialogue_start: String):
 	if !is_dialogue_active:
-		start_dialogue(dialogue_source, dialogue_start)
+		if dialogue_source.get_titles().has(dialogue_start):
+			start_dialogue(dialogue_source, dialogue_start)
 # End Region: Signals
