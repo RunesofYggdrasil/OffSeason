@@ -18,6 +18,7 @@ config/icon="res://assets/art/sprites/icon.svg"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Player="*res://scenes/systems/player.gd"
+GlobalEnums="*res://scenes/systems/global_enums.gd"
 
 [display]
 

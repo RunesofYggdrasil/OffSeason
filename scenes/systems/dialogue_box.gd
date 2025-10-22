@@ -137,7 +137,7 @@ func reposition(node: Node = self) -> void:
 
 # Start Region: Dialogue Methods
 func start_dialogue(dialogue_source: DialogueResource, dialogue_start: String) -> void:
-	get_tree().paused = true 
+	Player.start_dialogue()
 	box_canvas.show()
 	dialogue_resource = dialogue_source
 	dialogue_line = await DialogueManager.get_next_dialogue_line(dialogue_resource, dialogue_start)
@@ -222,7 +222,6 @@ func setup_response_dialogue() -> void:
 
 func end_dialogue() -> void:
 	box_canvas.hide()
-	get_tree().paused = false 
 	main_text.text = ""
 	main_text.visible_characters = 0
 	speaker_text.text = ""
@@ -236,6 +235,8 @@ func end_dialogue() -> void:
 	is_typing_dialogue = false
 	total_typed_characters = 0
 	current_typed_characters = 0
+	Player.end_dialogue()
+	Player.current_interaction_item = null
 # End Region: Dialogue Methods
 
 # Start Region: Signals

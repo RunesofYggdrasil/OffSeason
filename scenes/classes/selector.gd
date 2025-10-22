@@ -39,6 +39,10 @@ func setup_selectables() -> void:
 		if !has_connection:
 			child.mouse_hover.connect(set_highlighted_item)
 
+func get_selectable_children() -> Array[Selectable]:
+	get_item_children()
+	return selectable_children
+
 func get_highlighted_item() -> Selectable:
 	return highlighted_item
 
@@ -76,8 +80,10 @@ func get_item_children() -> void:
 	var item_children: Array[Selectable] = []
 	if selectable_container != null:
 		for child in selectable_container.get_children():
-			if child is Selectable and child.visible:
-				item_children.append(child)
+			if child is Selectable:
+				child.fix_selectability()
+				if child.is_selectable:
+					item_children.append(child)
 	selectable_children = item_children
 
 # Gets the items in the direction of the INPUT_DIRECTION, should not be used for PREV and NEXT.
